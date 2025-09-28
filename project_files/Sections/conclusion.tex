@@ -1,0 +1,23 @@
+\vspace{-5pt}
+\paragraph{Mathematical Analysis} 
+
+% As shown in Section~\ref{sect:experiment}, the \NAME{}  outperforms standard self-consistency~\citep{wang2023selfconsistencyimproveschainthought} and Agent Forest~\citep{li2024agentsneed}. Since our method also involves voting on model outputs, we examine its differences from these approaches to better explain the source of our improvements.
+
+\looseness=-1
+To explain our good performance, we note a limitation of self-consistency methods. Suppose a model has probability $p$ of answering a question correctly. When self-consistency samples $N$ responses, the probability of obtaining the correct answer after aggregation follows a binomial distribution.
+% 
+\begin{equation*}
+A(N, p) = \Pr\left( X \geq \left\lceil \tfrac{N}{2} \right\rceil \right) = \sum_{k=\lceil N/2 \rceil}^{N} \binom{N}{k} p^{k}(1-p)^{N-k}, \quad X \sim \text{Binomial}(N,p)
+\end{equation*}
+% 
+$A(N,p)$ exceeds $p$ only when $p > 0.5$, meaning self-consistency is effective only in this regime. When $p < 0.5$, however, self-consistency can actually lower overall accuracy. For any dataset, we can conceptually divide examples into three types of questions. Type 1 includes cases where $p = 100\%$, so the LLM always answers correctly. Type 2 covers cases where $p > 50\%$, meaning the model is more likely than not to be correct. Type 3 includes cases where $p < 50\%$, where the model is more likely to be wrong. The overall effect of self-consistency is then the improvement from Type 2, offset by the degradation from Type 3. Improvement occurs only when the dataset contains a sufficiently large proportion of Type 2 questions. 
+
+For the \NAME{}, we select the output from the most confident model, so the accuracy can be approximated as $A(N, p_{\max})$, where $p_{\max}$ is the highest probability among the three models. By increasing $p_{\max}$, we effectively enlarge the proportion of Type 2 questions, leading to higher overall accuracy. For the Agent Forest approach, answers are drawn evenly from all models, so its accuracy can be approximated as $A(N, \bar{p})$, where $\bar{p}$ is the average probability across models. This generally results in lower accuracy than \NAME{}.
+
+\paragraph{Limitation and Future Work} The SLM-MUX framework has two main limitations. First, its design is static and does not adapt to specific questions. For every query, it uses a fixed group of models that are pre-selected through exhaustive search -- a method that is slow and costly when there are many models to choose from. When models are tied, the framework uses their past accuracy on a validation set to decide, which is also a fixed, non-adaptive rule. Second, the way the framework measures model confidence is simple. It relies only on self-consistency -- how often a model produces the same answer. This can be a problem because a model can be very consistent while still being incorrect.
+
+
+\paragraph{Conclusion} 
+This work demonstrates that orchestration methods designed for frontier models paradoxically degrade the performance of SLMs by amplifying errors. To address this, we propose \NAME{}, a framework that avoids inter-model discussion, instead selecting the most reliable output based on each model's self-consistency. We further introduce a model selection search algorithm to find complementary model combinations. Experiments show our method not only substantially outperforms existing strategies but also enables an ensemble of just two SLMs to surpass the much larger Qwen-2.5 72B model on key reasoning benchmarks. In summary, our work validates that intelligently orchestrating multiple efficient models—a "multi-core" approach—is a highly promising alternative to endlessly scaling monolithic models on the path toward more capable AI systems.
+
+% Our paper studies how to effectively combine multiple language models together. We first identify some key reasons behind the limitations of existing compositional methods when applied to smaller-scale language models and introduce Protocol-Based Composition (PBC), an efficient, rule-based compositional method. Experimental results demonstrate that PBC significantly enhances the accuracy of small-scale language models and can also effectively integrate with state-of-the-art large-scale models, substantially reducing computational costs and resource consumption. Overall, our work points to a future direction of efficient language model systems consisting of many specialized language models jointly forming predictions.

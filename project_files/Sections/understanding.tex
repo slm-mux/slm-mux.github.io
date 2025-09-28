@@ -1,0 +1,32 @@
+\label{sect:analysis}
+
+\paragraph{Comparative Analysis of \NAME{} and Other Voting-Based Composition Methods} As shown in Section~\ref{sect:experiment}, the \NAME{}  outperforms standard self-consistency~\citep{wang2023selfconsistencyimproveschainthought} and Agent Forest~\citep{li2024agentsneed}. Since our method also involves voting on model outputs, we examine its differences from these approaches to better explain the source of our improvements.
+
+To explain our stronger performance, we note a limitation of self-consistency methods. Suppose a model has probability $p$ of answering a question correctly. When self-consistency samples $N$ responses, the probability of obtaining the correct answer after aggregation follows a binomial distribution.
+% 
+\begin{equation}
+A(N, p) = \Pr\left( X \geq \left\lceil \tfrac{N}{2} \right\rceil \right) = \sum_{k=\lceil N/2 \rceil}^{N} \binom{N}{k} p^{k}(1-p)^{N-k}, \quad X \sim \text{Binomial}(N,p)
+\end{equation}
+% 
+We observe that $A(N,p)$ exceeds $p$ only when $p > 0.5$, meaning self-consistency is effective only in this regime. When $p < 0.5$, however, self-consistency can actually lower overall accuracy.
+
+For any dataset, we can conceptually divide examples into three types of questions. Type 1 includes cases where $p = 100\%$, so the LLM always answers correctly. Type 2 covers cases where $p > 50\%$, meaning the model is more likely than not to be correct. Type 3 includes cases where $p < 50\%$, where the model is more likely to be wrong. The overall effect of self-consistency is then the improvement from Type 2, offset by the degradation from Type 3. Improvement occurs only when the dataset contains a sufficiently large proportion of Type 2 questions. 
+
+For the \NAME{}, we select the output from the most confident model, so the accuracy can be approximated as $A(N, p_{\max})$, where $p_{\max}$ is the highest probability among the three models. By increasing $p_{\max}$, we effectively enlarge the proportion of Type 2 questions, leading to higher overall accuracy.
+
+
+For the Agent Forest approach, answers are drawn evenly from all models, so its accuracy can be approximated as $A(N, \bar{p})$, where $\bar{p}$ is the average probability across models. This generally results in lower accuracy than \NAME{}.
+
+
+
+% \paragraph{Limitations and Future Work} 
+% \label{subsec:method_limitation}
+% Our proposed method has several limitations. First, PBC approach operates purely at inference time without any additional training, preventing us from fully exploiting the information in each language model. Future work could explore fine-tuning models jointly to fully combine information in models. In addition, PBC relies on generating multiple answers from a model as its estimated confidence, which can still be computationally expensive. Future work on more directly and more accurately estimating the confidence of a language model can greatly improve the efficiency and accuracy of the system.
+
+% \cw{High level idea: This section, we need to analyze the failure of existing combination methods such as LLM debate on small models}
+
+
+
+
+% \subsection{Composing Small-Scale Language Models}
+% \label{subsec:method_pbc}
