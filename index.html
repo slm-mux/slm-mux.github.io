@@ -22,8 +22,7 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <!-- Using system fonts for better performance and consistency -->
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -51,28 +50,8 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://composable-models.github.io/llm_debate/">
-            LLM-Debate
-          </a>
-          <a class="navbar-item" href="https://ardalabs.ai/MultiAgentVerification/">
-            Multi Agent Verification
-          </a>
-          <a class="navbar-item" href="https://yilundu.github.io/">
-            Yilun Du's Homepage
-          </a>
-        </div>
-      </div>
+
     </div>
 
   </div>
@@ -86,14 +65,14 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">SLM-MUX: Orchestrating Small Language Models for Reasoning</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Chenyu Wang<sup>1,*</sup>,</span>
-            <span class="author-block">Zishen Wan<sup>2,*</sup>,</span>
-            <span class="author-block">Hao Kang<sup>2</sup>,</span>
-            <span class="author-block">Emma Chen<sup>1</sup>,</span>
-            <span class="author-block">Zhiqiang Xie<sup>3</sup>,</span>
-            <span class="author-block">Tushar Krishna<sup>2</sup>,</span>
-            <span class="author-block">Vijay Janapa Reddi<sup>1</sup>,</span>
-            <span class="author-block">Yilun Du<sup>1,†</sup></span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=QI96hfoAAAAJ&hl=en" style="color: blue;">Chenyu Wang</a><sup>1,*</sup>,</span>
+            <span class="author-block"><a href="https://zishenwan.github.io/" style="color: blue;">Zishen Wan</a><sup>2,*</sup>,</span>
+            <span class="author-block"><a href="https://synergy.ece.gatech.edu/members/" style="color: blue;">Hao Kang</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://www.csail.mit.edu/person/emma-chen" style="color: blue;">Emma Chen</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://zhiqiangxie.com/" style="color: blue;">Zhiqiang Xie</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://tusharkrishna.ece.gatech.edu/" style="color: blue;">Tushar Krishna</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://vijay.seas.harvard.edu/" style="color: blue;">Vijay Janapa Reddi</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://yilundu.github.io/" style="color: blue;">Yilun Du</a><sup>1,†</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -111,7 +90,7 @@
               <!-- PDF Link. -->
               <span class="link-block">
                 <a href="ICLR_SLM_MUX.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded is-link">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
@@ -121,7 +100,7 @@
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/slm-mux/SLM-MUX"
-                   class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded is-link">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
@@ -137,13 +116,36 @@
   </div>
 </section>
 
+<!-- SLM-MUX Workflow Hero Image -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-3">SLM-MUX Workflow</h2>
+          <figure class="image">
+            <a href="project_files/Figures/SLM-Mux_workflow.pdf">
+              <img src="project_files/Figures/SLM-Mux_workflow.png" 
+                   alt="Illustration of SLM-MUX Workflow" 
+                   style="width:100%;max-width:1200px;height:auto;margin:0 auto;display:block;">
+            </a>
+          </figure>
+          <p class="has-text-centered mt-4" style="font-size: 0.95rem; color: #666;">
+            Click to view high-resolution PDF. A video demonstration will be added soon for better visualization of the workflow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-left">
           <p>
             With the rapid development of language models, the number of small language models (SLMs) has grown significantly. Although they do not achieve state-of-the-art accuracy, they are more efficient and often excel at specific tasks. This raises a natural question: can multiple SLMs be orchestrated into a system where each contributes effectively, achieving higher accuracy than any individual model? Existing orchestration methods have primarily targeted frontier models (e.g., GPT-4) and perform suboptimally when applied to SLMs. To address this gap, we propose a three-stage approach for orchestrating SLMs. First, we introduce SLM-MUX, a multi-model architecture that effectively coordinates multiple SLMs. Building on this, we develop two optimization strategies: (i) a model selection search that identifies the most complementary SLMs from a given pool, and (ii) test-time scaling tailored to SLM-MUX. Our approach delivers strong results: Compared to existing orchestration methods, our approach achieves up to 13.4% improvement on MATH, 8.8% on GPQA, and 7.0% on GSM8K. With just two SLMs, SLM-MUX outperforms Qwen 2.5 72B on GPQA and GSM8K, and matches its performance on MATH. We further provide theoretical analyses to substantiate the advantages of our method. In summary, we demonstrate that SLMs can be effectively orchestrated into more accurate and efficient systems through the proposed approach.
           </p>
@@ -157,10 +159,67 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Results</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="content has-text-left">
+          <h3 class="title is-4">Takeaway 1: Discussion-based orchestration harms SLM performance</h3>
+          <p>
+            To assess whether orchestration methods designed for frontier LLMs carry over to SLMs, we compare three
+            discussion-based approaches—LLM‑Debate, Mixture‑of‑Agents, and Multi‑Agent Verification—under identical
+            experimental settings for both model groups. We evaluate on the MATH and GPQA benchmarks using the
+            corresponding official implementations and prompts.
+          </p>
+          <p>
+            <strong>Results.</strong> Discussion-based methods generally boost accuracy for frontier LLMs, but when applied
+            to SLMs they fail to surpass the strongest single model and can even reduce accuracy (up to 5.5%). This
+            indicates that discussion tends to amplify errors in SLMs rather than correct them.
+          </p>
+          <p>
+            <strong>Analysis.</strong> SLMs in group discussions exhibit a form of "groupthink": models reinforce one
+            another's incorrect reasoning instead of correcting mistakes, which amplifies errors. Empirical examples and
+            additional analysis are provided in the appendix.
+          </p>
+          <figure>
+            <a href="project_files/Figures/Small-large-acc-light-blue_v2.pdf">
+              <img src="project_files/Figures/Small-large-acc-light-blue.png"
+                   alt="Comparison of discussion-based orchestration with SLMs vs frontier LLMs on MATH and GPQA"
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left">
+              Comparison of discussion-based orchestration using SLMs (left) and frontier LLMs (right) on MATH and GPQA.
+              Baseline “Single‑Model Max” denotes the best individual model. Orchestration is successful if it surpasses
+              the baseline.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Our Related Projects</h2>
+        <div class="publication-links">
+                <span class="link-block">
+                    <a href="https://composable-models-staging.github.io/llm_debate/" class="external-link button is-normal is-rounded is-link">
+                        <span>LLM-Debate</span>
+                    </a>
+                </span>
+          <span class="link-block">
+                    <a href="https://ardalabs.ai/MultiAgentVerification/" class="external-link button is-normal is-rounded is-link">
+                        <span>Multi Agent Verification</span>
+                    </a>
+                </span>
+          <span class="link-block">
+                    <a href="https://yilundu.github.io/" class="external-link button is-normal is-rounded is-link">
+                        <span>Yilun Du's Homepage</span>
+                    </a>
+                </span>
         </div>
       </div>
     </div>
