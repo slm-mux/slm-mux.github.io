@@ -80,11 +80,6 @@
             <span class="author-block"><sup>2</sup>Georgia Institute of Technology,</span>
             <span class="author-block"><sup>3</sup>Stanford University</span>
           </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>*</sup>Equal contribution.</span>
-            <span class="author-block"><sup>†</sup>Correspondence to: Yilun Du &lt;ydu@seas.harvard.edu&gt;.</span>
-          </div>
-
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
@@ -163,22 +158,95 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-centered">Results</h2>
         <div class="content has-text-left">
-          <h3 class="title is-4">Takeaway 1: Discussion-based orchestration harms SLM performance</h3>
+          <h3 class="title is-4">Takeaway 1: Orchestrating Small Language Models Outperforms a Single Large Model</h3>
           <p>
-            To assess whether orchestration methods designed for frontier LLMs carry over to SLMs, we compare three
-            discussion-based approaches—LLM‑Debate, Mixture‑of‑Agents, and Multi‑Agent Verification—under identical
-            experimental settings for both model groups. We evaluate on the MATH and GPQA benchmarks using the
-            corresponding official implementations and prompts.
+            A key question motivating our work is whether multiple small language models (SLMs), when effectively 
+            orchestrated, can match or exceed the performance of a single large language model (LLM). To investigate 
+            this, we compare our SLM-MUX system—built using just two SLMs—against Qwen 2.5 72B, a state-of-the-art 
+            large model with approximately 72 billion parameters. We evaluate both systems on three challenging 
+            reasoning benchmarks: MATH, GPQA, and GSM8K.
           </p>
           <p>
-            <strong>Results.</strong> Discussion-based methods generally boost accuracy for frontier LLMs, but when applied
-            to SLMs they fail to surpass the strongest single model and can even reduce accuracy (up to 5.5%). This
-            indicates that discussion tends to amplify errors in SLMs rather than correct them.
+            <strong>Results.</strong> As shown in Table 1, our SLM-MUX achieves remarkable results. Using only two 
+            carefully selected SLMs (Mistral Small 24B and Qwen2.5 7B), SLM-MUX significantly outperforms Qwen 2.5 72B 
+            on GPQA (49.9% vs. 44.9%, a gain of +5.0%) and GSM8K (93.7% vs. 90.4%, a gain of +3.3%). On MATH, 
+            SLM-MUX achieves 81.9% accuracy, nearly matching the 82.3% of Qwen 2.5 72B. These results demonstrate that 
+            properly orchestrated SLMs can rival or surpass models nearly 10× larger in parameter count.
           </p>
           <p>
-            <strong>Analysis.</strong> SLMs in group discussions exhibit a form of "groupthink": models reinforce one
-            another's incorrect reasoning instead of correcting mistakes, which amplifies errors. Empirical examples and
-            additional analysis are provided in the appendix.
+            <strong>Analysis.</strong> This performance advantage stems from two key factors. First, different SLMs 
+            exhibit complementary strengths: one model may excel at algebra while another performs better on geometry. 
+            By selecting outputs based on confidence scores, SLM-MUX leverages these complementary capabilities 
+            effectively. Second, our approach avoids the pitfalls of discussion-based methods (which harm SLM 
+            performance, as shown in Takeaway 2) by using a confidence-based selection mechanism that amplifies 
+            strengths rather than errors. This demonstrates that the path forward may involve orchestrating multiple 
+            smaller, specialized models rather than continuously scaling single models to ever-larger sizes.
+          </p>
+          <figure>
+            <table style="width:100%; border-collapse: collapse; margin: 2rem 0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #333;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600;">Benchmark</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">SLM-MUX<br>(2 SLMs)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Qwen 2.5 72B<br>(Single LLM)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Δ (Gain)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">MATH</td>
+                  <td style="padding: 0.75rem; text-align: center;">81.9 ± 0.2%</td>
+                  <td style="padding: 0.75rem; text-align: center;">82.3 ± 0.5%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #f39c12;">-0.4%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">GPQA</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">49.9 ± 1.8%</td>
+                  <td style="padding: 0.75rem; text-align: center;">44.9 ± 0.5%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #27ae60; font-weight: 600;">+5.0%</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem;">GSM8K</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">93.7 ± 0.2%</td>
+                  <td style="padding: 0.75rem; text-align: center;">90.4 ± 0.3%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #27ae60; font-weight: 600;">+3.3%</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="has-text-left">
+              <strong>Table 1.</strong> Comparison of SLM-MUX (using two SLMs: Mistral Small 24B and Qwen2.5 7B) 
+              versus Qwen 2.5 72B across three reasoning benchmarks. SLM-MUX significantly outperforms the much 
+              larger model on GPQA and GSM8K, while matching its performance on MATH. This demonstrates that 
+              orchestrating multiple SLMs can be more effective than relying on a single large model.
+            </figcaption>
+          </figure>
+        </div>
+        
+        <div class="content has-text-left" style="margin-top: 3rem;">
+          <h3 class="title is-4">Takeaway 2: Discussion-Based Orchestration Harms SLM Performance</h3>
+          <p>
+            A natural question arises: if existing orchestration methods work well for frontier LLMs like GPT-4 and 
+            DeepSeek V3, shouldn't they also work for SLMs? To test this assumption, we conducted a systematic comparison 
+            of three prominent discussion-based approaches—LLM-Debate, Mixture-of-Agents, and Multi-Agent Verification. 
+            We ran these methods on two different model groups: (1) frontier LLMs (DeepSeek V3, Gemini 2.0 Flash, GPT-4o) 
+            and (2) SLMs (Llama 3.1 8B, Mistral 8×7B, Gemma 2 27B), using identical experimental settings and evaluation 
+            on MATH and GPQA benchmarks.
+          </p>
+          <p>
+            <strong>Results.</strong> The results reveal a striking divergence. While discussion-based methods successfully 
+            improve frontier LLM accuracy (up to 2% gains), the same methods consistently fail when applied to SLMs. 
+            Not only do they fail to surpass the best individual SLM in the group, but they can actually harm performance—
+            reducing accuracy by up to 5.5% in some cases. This counterintuitive finding challenges the assumption that 
+            orchestration strategies transfer seamlessly across model scales.
+          </p>
+          <p>
+            <strong>Analysis.</strong> Why do these methods fail for SLMs? Our investigation reveals that SLMs exhibit 
+            a problematic form of "groupthink" during discussions. Instead of critically evaluating and correcting each 
+            other's mistakes, smaller models tend to reinforce incorrect reasoning patterns, amplifying errors rather 
+            than mitigating them. This suggests that the collaborative deliberation mechanisms that work for large models—
+            which have stronger reasoning and self-correction abilities—break down when models lack sufficient capability 
+            to distinguish correct from incorrect reasoning. The appendix provides detailed empirical examples illustrating 
+            this phenomenon.
           </p>
           <figure>
             <a href="project_files/Figures/Small-large-acc-light-blue_v2.pdf">
@@ -198,6 +266,99 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-left">
+          <h3 class="title is-4">Takeaway 3: Test-Time Scaling Impacts SLM-MUX in Different Ways</h3>
+          <p>
+            Beyond the basic SLM-MUX architecture, we investigate two complementary strategies for scaling 
+            computational resources at test time: (1) <strong>Adding More Participating Model Types</strong>—increasing 
+            the number of distinct SLMs in the orchestration from 2 to 5 models, and (2) <strong>Drawing More Samples 
+            per Model</strong>—generating multiple independent responses from each model and using them to improve 
+            confidence estimation. These two dimensions offer different trade-offs between accuracy and computational cost.
+          </p>
+          
+          <h4 class="title is-5" style="margin-top: 2rem;">Adding More Participating Model Types</h4>
+          <p>
+            We evaluate how performance changes as we increase the number of models in the orchestration. For each 
+            ensemble size (K=2 to 5), we apply our model selection search to identify the optimal combination, then 
+            evaluate SLM-MUX on the validation set.
+          </p>
+          <p>
+            <strong>Results.</strong> The effect of adding more models varies substantially across benchmarks 
+            (Figure 2a). On GPQA, accuracy peaks at K=2 models and declines thereafter. On GSM8K, performance 
+            quickly saturates at two models with no further gains. In contrast, on MATH, accuracy continues to improve 
+            as additional models are included. Interestingly, despite these divergent trends in final accuracy, the 
+            union accuracy (the percentage of questions solved by at least one model) consistently increases with more 
+            models across all benchmarks.
+          </p>
+          <p>
+            <strong>Analysis.</strong> This divergence reveals a fundamental tension: while adding models expands the 
+            set of questions that <em>can</em> be answered (higher union accuracy), it also increases the frequency of 
+            contradictory predictions among models. When models disagree, SLM-MUX must select one output based on 
+            confidence scores—and incorrect selections become more likely as contradictions grow. This explains why 
+            GPQA and GSM8K show declining or plateauing performance despite growing union accuracy. The optimal number 
+            of models depends on the specific benchmark and the degree of complementarity among available SLMs.
+          </p>
+
+          <figure style="margin: 2rem 0;">
+            <a href="project_files/Figures/Adding_More_Participating_Models.pdf">
+              <img src="project_files/Figures/Adding_More_Participating_Models.png" 
+                   alt="Adding More Participating Models" 
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left" style="margin-top: 1rem;">
+              <strong>Figure 2a. Adding more participating model types (K=2 to 5).</strong> The blue line shows 
+              mean accuracy of SLM-MUX with optimal model selections. The grey line shows union accuracy (percentage 
+              of questions solvable by at least one model). MATH continues improving with more models, while GPQA 
+              and GSM8K peak early or decline, despite consistently increasing union accuracy across all benchmarks.
+            </figcaption>
+          </figure>
+          
+          <h4 class="title is-5" style="margin-top: 2rem;">Drawing More Samples per Model</h4>
+          <p>
+            We examine the second scaling dimension by varying the number of samples drawn from each model (from 2 to 9 
+            samples) while keeping the model set fixed. We compare SLM-MUX against Agent Forest, a competitive baseline 
+            method, using identical model configurations to ensure fair comparison.
+          </p>
+          <p>
+            <strong>Results.</strong> Drawing more samples per model yields consistent improvements across all three 
+            benchmarks (Figure 2b). Unlike the model-count scaling dimension, this strategy shows no signs of 
+            diminishing returns within the tested range. Moreover, SLM-MUX systematically outperforms Agent Forest 
+            across all sample budgets, with the largest margin observed on GPQA (+5.9% at 2 samples), where individual 
+            model accuracy is lowest. At higher sample counts, SLM-MUX maintains its advantage (+1.2% on GPQA, +2.2% 
+            on GSM8K, +0.3% on MATH when using the best sample count for each method).
+          </p>
+          <p>
+            <strong>Analysis.</strong> Increasing samples per model provides more reliable confidence estimates, allowing 
+            SLM-MUX to make better output selections. This explains the consistent gains across benchmarks. The larger 
+            improvements on GPQA suggest that sample scaling is particularly valuable when base model performance is 
+            weaker, as additional samples help distinguish between truly confident correct answers and overconfident 
+            incorrect ones. This scaling dimension offers a more predictable path to accuracy improvements compared to 
+            adding more model types.
+          </p>
+
+          <figure style="margin: 2rem 0;">
+            <a href="project_files/Figures/scaling_curves.pdf">
+              <img src="project_files/Figures/scaling_curves.png" 
+                   alt="Drawing More Samples per Model" 
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left" style="margin-top: 1rem;">
+              <strong>Figure 2b. Drawing more samples per model.</strong> We report mean accuracy as the number of 
+              samples per model increases from 2 to 9. SLM-MUX (colored lines for Group 1 and Group 2) systematically 
+              outperforms Agent Forest (grey line) across all sample budgets on MATH, GPQA, and GSM8K. The largest 
+              gains appear on GPQA where base model accuracy is lowest, demonstrating that sample scaling is 
+              particularly valuable for harder tasks.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
