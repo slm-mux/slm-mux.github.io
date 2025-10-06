@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLM-MUX Workflow Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: transparent; /* Make background transparent */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* Remove padding */
+        }
+        
+        .container {
+            background: transparent; /* Make background transparent */
+            border-radius: 15px;
+            padding: 0; /* Remove padding */
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: none; /* Remove shadow */
+            border: none; /* Remove border */
+        }
+        
+        .step-label {
+            text-align: center;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .workflow {
+            position: relative;
+            min-height: auto; /* Allow natural height */
+        }
+        
+        .step {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s ease-in-out;
+            margin-bottom: 20px; /* Add spacing between steps */
+        }
+        
+        .step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .phase-header {
+            background-color: #E87A3B; /* Brighter Orange */
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .question-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px; /* Reduced margin */
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .question-box .correct-answer {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
+        .question-box strong {
+            color: #E87A3B; /* Brighter Orange */
+        }
+        
+        .slm-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+        
+        .slm-box {
+            flex: 1;
+            background: #fdfdfd;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            opacity: 1;
+            transition: all 0.5s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .slm-box.agent1 { border-color: #A3E4D7; background-color: #E8F8F5; } /* Light Teal */
+        .slm-box.agent2 { border-color: #A9CCE3; background-color: #EBF5FB; } /* Light Blue */
+        .slm-box.agent3 { border-color: #FAD7A0; background-color: #FEF9E7; } /* Light Yellow */
+        
+        .slm-box h3 {
+            color: #D85136; /* Red-Orange */
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        .response {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 8px;
+            margin: 6px 0;
+            font-size: 0.95em;
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .response.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .icon {
+            font-size: 1.4em;
+        }
+        .icon-correct { color: #4CAF50; }
+        .icon-incorrect { color: #f44336; }
+        
+        .arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #E87A3B; /* Brighter Orange */
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .arrow.active {
+            opacity: 1;
+        }
+        
+        .selection-box {
+            background: #fff8e1;
+            border: 1px solid #ffecb3;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            opacity: 1;
+            transition: all 0.6s ease;
+        }
+
+        .selection-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .selection-box th, .selection-box td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .selection-box th {
+            color: #af8951;
+            font-weight: 500;
+        }
+
+        .selection-box td strong {
+            color: #A93226; /* Maroon */
+        }
+        
+        .final-output {
+            background: #e8f5e9;
+            border: 2px solid #4CAF50;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2em;
+            opacity: 1;
+            transition: all 0.7s ease;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 20px; /* Add margin above the button */
+        }
+        
+        .btn {
+            background-color: transparent; /* Remove background */
+            color: #3273dc; /* Use standard link blue color */
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px; /* Slightly rounded corners */
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.2s ease;
+            box-shadow: none; /* Remove shadow */
+        }
+        
+        .btn:hover {
+            transform: none; /* Remove hover transform */
+            background-color: #f0f0f0; /* Light grey background on hover */
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 5px;
+            border-radius: 2.5px;
+            margin: 20px 0; /* Adjusted margin */
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background-color: #E87A3B; /* Brighter Orange */
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .highlight-winner {
+            background-color: #e8f5e9 !important;
+            border: 2px solid #4CAF50 !important;
+        }
+
+        .tie-breaker {
+            background-color: #fff3e0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ffe0b2;
+            text-align: center;
+            font-size: 1.1em;
+            color: #e65100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="workflow" id="workflow">
+            <!-- Step 1: User Input -->
+            <div class="step" id="step1">
+                <div class="step-label">Step 1: User Input</div>
+                <p style="text-align: center; color: #666; margin-bottom: 15px; font-size: 0.95em;">
+                    The user submits a question to the SLM-MUX system
+                </p>
+                <div class="question-box">
+                    <strong>Question:</strong> Which of the following physical theories never requires regularization at high energies?
+                    <br>
+                    (A) Superstring Theory <br>
+                    (B) Classical Electrodynamics <br>
+                    (C) Quantum Electrodynamics (QED) <br>
+                    (D) Quantum Chromodynamics (QCD)
+                    <div class="correct-answer">Correct Answer: (A)</div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Query Multiple SLMs and Generate Responses -->
+            <div class="step" id="step2">
+                 <div class="arrow">↓</div>
+                 <div class="step-label">Step 2: Query Multiple SLMs</div>
+                 <p style="text-align: center; color: #666; margin-bottom: 15px; font-size: 0.95em;">
+                    The question is sent to 3 different SLMs. Each SLM generates 3 independent responses.
+                </p>
+                <div class="slm-container">
+                    <div class="slm-box agent1" id="slm1-resp">
+                        <h3>SLM 1</h3>
+                        <div class="response" id="s1r1"><span>Output 1: ... the final answer is (A)</span> <span class="icon icon-correct">✔</span></div>
+                        <div class="response" id="s1r2"><span>Output 2: ... the final answer is (A)</span> <span class="icon icon-correct">✔</span></div>
+                        <div class="response" id="s1r3"><span>Output 3: ... therefor the correct answer is (B)</span> <span class="icon icon-incorrect">✖</span></div>
+                    </div>
+                    <div class="slm-box agent2" id="slm2-resp">
+                        <h3>SLM 2</h3>
+                        <div class="response" id="s2r1"><span>Output 1: ... the final answer is (A)</span> <span class="icon icon-correct">✔</span></div>
+                        <div class="response" id="s2r2"><span>Output 2: ... the correct choice is (B)</span> <span class="icon icon-incorrect">✖</span></div>
+                        <div class="response" id="s2r3"><span>Output 3: ... I think the best answer is (B)</span> <span class="icon icon-incorrect">✖</span></div>
+                    </div>
+                    <div class="slm-box agent3" id="slm3-resp">
+                        <h3>SLM 3</h3>
+                        <div class="response" id="s3r1"><span>Output 1: ... the final answer is (A)</span> <span class="icon icon-correct">✔</span></div>
+                        <div class="response" id="s3r2"><span>Output 2: ... the correct choice is (B)</span> <span class="icon icon-incorrect">✖</span></div>
+                        <div class="response" id="s3r3"><span>Output 3: ... I think the best answer is (C)</span> <span class="icon icon-incorrect">✖</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Calculate Confidence Scores -->
+            <div class="step" id="step3">
+                <div class="arrow">↓</div>
+                <div class="step-label">Step 3: Calculate Confidence Scores</div>
+                <p style="text-align: center; color: #666; margin-bottom: 15px; font-size: 0.95em;">
+                    Confidence is calculated by counting how many times each SLM gives the same answer.<br>
+                    SLM 1: 2/3 answers are (A) → 67% confidence<br>
+                    SLM 2: 2/3 answers are (B) → 67% confidence<br>
+                    SLM 3: Only 1/3 answers match → 33% confidence
+                </p>
+                <div class="selection-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>SLM 1</th>
+                                <th>SLM 2</th>
+                                <th>SLM 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Confidence</strong></td>
+                                <td id="c1">67% <span class="icon icon-correct">✔</span></td>
+                                <td id="c2">67% <span class="icon icon-correct">✔</span></td>
+                                <td id="c3">33% <span class="icon icon-incorrect">✖</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Step 4: Break Tie with Validation Accuracy -->
+            <div class="step" id="step4">
+                <div class="arrow">↓</div>
+                <div class="step-label">Step 4: Tie-Breaker with Validation Accuracy</div>
+                <p style="text-align: center; color: #666; margin-bottom: 15px; font-size: 0.95em;">
+                    SLM 1 and SLM 2 both have 67% confidence (tie!).<br>
+                    We use Validation Accuracy as a tie-breaker: SLM 1 has higher validation accuracy.
+                </p>
+                 <div class="selection-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>SLM 1</th>
+                                <th>SLM 2</th>
+                                <th>SLM 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Confidence</strong></td>
+                                <td id="c1b">67% <span class="icon icon-correct">✔</span></td>
+                                <td id="c2b">67% <span class="icon icon-correct">✔</span></td>
+                                <td id="c3b">33% <span class="icon icon-incorrect">✖</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Validation Accuracy</strong></td>
+                                <td id="h1">High <span class="icon icon-correct">✔</span></td>
+                                <td id="h2">Low <span class="icon icon-incorrect">✖</span></td>
+                                <td id="h3">Low <span class="icon icon-incorrect">✖</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tie-breaker" style="margin-top: 15px;">
+                        <strong>Winner:</strong> SLM 1 is selected due to higher validation accuracy
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Final Output -->
+            <div class="step" id="step5">
+                <div class="arrow">↓</div>
+                <div class="step-label">Step 5: Final Answer</div>
+                <p style="text-align: center; color: #666; margin-bottom: 15px; font-size: 0.95em;">
+                    The system outputs the most frequent answer from the selected SLM (SLM 1)
+                </p>
+                <div class="final-output">
+                    <h3>Final Answer</h3>
+                    <div style="font-size: 1.5em; font-weight: bold; margin: 10px 0;">(A) Superstring Theory</div>
+                    <div style="font-size: 0.9em; opacity: 0.8;">Selected from <strong>SLM 1</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="restartAnimation()">🔄 Replay Animation</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 0;
+        const totalSteps = 5;
+        let animationTimeout;
+        
+        function startAnimation() {
+            currentStep = 0;
+            // Clear all active states and timeouts
+            clearTimeout(animationTimeout);
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.querySelectorAll('.response').forEach(resp => resp.classList.remove('active'));
+            document.querySelectorAll('.slm-box').forEach(box => {
+                box.classList.remove('active');
+                box.classList.remove('highlight-winner');
+            });
+            document.querySelectorAll('td').forEach(td => td.classList.remove('highlight-winner'));
+
+            updateProgress(0);
+            showNextStep();
+        }
+        
+        function showNextStep() {
+            if (currentStep >= totalSteps) return;
+
+            // Don't hide previous step - keep all steps visible
+            
+            currentStep++;
+            updateProgress((currentStep / totalSteps) * 100);
+            
+            const stepElement = document.getElementById('step' + currentStep);
+            if (stepElement) {
+                stepElement.classList.add('active');
+                
+                // Show arrow before this step
+                const arrow = stepElement.querySelector('.arrow');
+                if (arrow) {
+                    setTimeout(() => arrow.classList.add('active'), 200);
+                }
+                
+                // Special animations for each step
+                if (currentStep === 2) { // Query and Generate Responses
+                    const responses = document.querySelectorAll('.response');
+                    responses.forEach((resp, index) => {
+                        setTimeout(() => resp.classList.add('active'), 300 + index * 100);
+                    });
+                    animationTimeout = setTimeout(showNextStep, 3500);
+                } else if (currentStep === 4) { // Tie-breaker
+                    // Highlight the tie-breaker elements
+                    setTimeout(() => {
+                        document.getElementById('c1b').classList.add('highlight-winner');
+                        document.getElementById('c2b').classList.add('highlight-winner');
+                        document.getElementById('h1').classList.add('highlight-winner');
+                    }, 500);
+                    animationTimeout = setTimeout(showNextStep, 3500);
+                }
+                else {
+                    animationTimeout = setTimeout(showNextStep, 2500);
+                }
+            }
+        }
+        
+        function updateProgress(percent) {
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+        
+        function restartAnimation() {
+            startAnimation();
+        }
+        
+        function skipToEnd() {
+            clearTimeout(animationTimeout);
+            // Show all steps
+            for (let i = 1; i <= totalSteps; i++) {
+                const step = document.getElementById('step' + i);
+                if(step) {
+                    step.classList.add('active');
+                    const arrow = step.querySelector('.arrow');
+                    if (arrow) arrow.classList.add('active');
+                }
+            }
+            // Ensure elements within all steps are also active
+            document.querySelectorAll('.response').forEach(el => el.classList.add('active'));
+            // Highlight tie-breaker
+            document.getElementById('c1b').classList.add('highlight-winner');
+            document.getElementById('c2b').classList.add('highlight-winner');
+            document.getElementById('h1').classList.add('highlight-winner');
+            updateProgress(100);
+        }
+        
+        window.addEventListener('load', () => {
+            setTimeout(startAnimation, 500);
+        });
+    </script>
+</body>
+</html>
