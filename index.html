@@ -3,10 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Hao Kang's Personal Website">
-  <meta name="keywords" content="Hao Kang, Georgia Tech, Deep Learning, Systems">
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hao Kang</title>
+  <title>SLM-MUX: Orchestrating Small Language Models for Reasoning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- Using system fonts for better performance and consistency -->
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -24,40 +40,90 @@
 </head>
 <body>
 
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+
+    </div>
+
+  </div>
+</nav>
+
+
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Hao Kang (康浩)</h1>
+          <h1 class="title is-1 publication-title">SLM-MUX: Orchestrating Small Language Models for Reasoning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a href="https://scholar.google.com/citations?user=QI96hfoAAAAJ&hl=en" style="color: blue;">Chenyu Wang</a><sup>1,*</sup>,</span>
             <span class="author-block"><a href="https://zishenwan.github.io/" style="color: blue;">Zishen Wan</a><sup>2,*</sup>,</span>
-            <span class="author-block"><a href="https://haokang-timmy.github.io/" style="color: blue;">Hao Kang</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://synergy.ece.gatech.edu/members/" style="color: blue;">Hao Kang</a><sup>2</sup>,</span>
             <span class="author-block"><a href="https://scholar.google.com/citations?user=89ANml4AAAAJ&hl=en" style="color: blue;">Emma Chen</a><sup>1</sup>,</span>
             <span class="author-block"><a href="https://zhiqiangxie.com/" style="color: blue;">Zhiqiang Xie</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://tusharkrishna.ece.gatech.edu/" style="color: blue;">Tushar Krishna</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://vijay.seas.harvard.edu/" style="color: blue;">Vijay Janapa Reddi</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://yilundu.github.io/" style="color: blue;">Yilun Du</a><sup>1,†</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Harvard University,</span>
+            <span class="author-block"><sup>2</sup>Georgia Institute of Technology,</span>
+            <span class="author-block"><sup>3</sup>Stanford University</span>
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
+              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="mailto:hao.kang.sys@gmail.com" class="external-link button is-medium is-rounded is-link">
-                  <span class="icon"><i class="fas fa-envelope"></i></span>
-                  <span>Email</span>
-                </a>
+                <a href="ICLR_SLM_MUX.pdf"
+                   class="external-link button is-medium is-rounded is-link">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
                   </span>
-              <span class="link-block">
-                <a href="data/kh_cv10.15.pdf" class="external-link button is-medium is-rounded is-link">
-                  <span class="icon"><i class="ai ai-cv"></i></span>
-                  <span>CV</span>
+                  <span>Paper</span>
                 </a>
               </span>
+              <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/HaoKang-Timmy" class="external-link button is-medium is-rounded is-link">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Github</span>
+                <a href="https://github.com/slm-mux/SLM-MUX"
+                   class="external-link button is-medium is-rounded is-link">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
                   </a>
               </span>
             </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLM-MUX Workflow Animation -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-3">SLM-MUX Workflow</h2>
+          
+          <!-- Animation View -->
+          <div>
+            <iframe src="workflow_animation.html" 
+                    style="width:100%;height:1400px;border:none;border-radius:15px;">
+            </iframe>
           </div>
         </div>
       </div>
@@ -67,33 +133,214 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <!-- Abstract. -->
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <div class="columns is-centered">
-            <div class="column is-one-third">
-                <img src="images/43510722.png" alt="profile photo" style="border-radius: 10px;"/>
-            </div>
-            <div class="column is-two-thirds content">
-                <h2 class="title is-3">About Me</h2>
-                <p>
-                    I am a PhD student at Georgia Institute of Technology advised by Prof. Tushar Krishna. Prior to GT, I was fortunate to have worked with Prof Baharan at UCLA about efficient machine learning from massive datasets. At MIT, I work with Prof Song Han about efficient machine learning on edge device. I received my B.Eng. in Computer Science in 2023 from Zhejiang University.
-                </p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-                <h2 class="title is-3 has-text-centered">Research Interests</h2>
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
         <div class="content has-text-left">
-                <p>
-                    I am interested in efficient machine learning and systems, experienced in the intersection of both field. I aim to use low-rank approximation and compression algorithms to accelerate machine learning models especially LLMs. Also, I design efficient systems like inference/fine-tuning scheduler to accelerate training/inference process.
-                </p>
+          <p>
+            With the rapid development of language models, the number of small language models (SLMs) has grown significantly. Although they do not achieve state-of-the-art accuracy, they are more efficient and often excel at specific tasks. This raises a natural question: can multiple SLMs be orchestrated into a system where each contributes effectively, achieving higher accuracy than any individual model? Existing orchestration methods have primarily targeted frontier models (e.g., GPT-4) and perform suboptimally when applied to SLMs. To address this gap, we propose a three-stage approach for orchestrating SLMs. First, we introduce SLM-MUX, a multi-model architecture that effectively coordinates multiple SLMs. Building on this, we develop two optimization strategies: (i) a model selection search that identifies the most complementary SLMs from a given pool, and (ii) test-time scaling tailored to SLM-MUX. Our approach delivers strong results: Compared to existing orchestration methods, our approach achieves up to 13.4% improvement on MATH, 8.8% on GPQA, and 7.0% on GSM8K. With just two SLMs, SLM-MUX outperforms Qwen 2.5 72B on GPQA and GSM8K, and matches its performance on MATH. We further provide theoretical analyses to substantiate the advantages of our method. In summary, we demonstrate that SLMs can be effectively orchestrated into more accurate and efficient systems through the proposed approach.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="content has-text-left">
+          <h3 class="title is-4">Takeaway 1: Orchestrating Small Language Models Outperforms a Single Large Model</h3>
+          <p>
+            A key question motivating our work is whether multiple small language models (SLMs), when effectively 
+            orchestrated, can match or exceed the performance of a single large language model (LLM). To investigate 
+            this, we compare our SLM-MUX system—built using just two SLMs—against Qwen 2.5 72B, a state-of-the-art 
+            large model with approximately 72 billion parameters. We evaluate both systems on three challenging 
+            reasoning benchmarks: MATH, GPQA, and GSM8K.
+          </p>
+          <p>
+            <strong>Results.</strong> As shown in Table 1, our SLM-MUX achieves remarkable results. Using only two 
+            carefully selected SLMs (Mistral Small 24B and Qwen2.5 7B), SLM-MUX significantly outperforms Qwen 2.5 72B 
+            on GPQA (49.9% vs. 44.9%, a gain of +5.0%) and GSM8K (93.7% vs. 90.4%, a gain of +3.3%). On MATH, 
+            SLM-MUX achieves 81.9% accuracy, nearly matching the 82.3% of Qwen 2.5 72B. These results demonstrate that 
+            properly orchestrated SLMs can rival or surpass models nearly 10× larger in parameter count.
+          </p>
+          <p>
+            <strong>Analysis.</strong> This performance advantage stems from two key factors. First, different SLMs 
+            exhibit complementary strengths: one model may excel at algebra while another performs better on geometry. 
+            By selecting outputs based on confidence scores, SLM-MUX leverages these complementary capabilities 
+            effectively. Second, our approach avoids the pitfalls of discussion-based methods (which harm SLM 
+            performance, as shown in Takeaway 2) by using a confidence-based selection mechanism that amplifies 
+            strengths rather than errors. This demonstrates that the path forward may involve orchestrating multiple 
+            smaller, specialized models rather than continuously scaling single models to ever-larger sizes.
+          </p>
+          <figure>
+            <table style="width:100%; border-collapse: collapse; margin: 2rem 0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #333;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600;">Benchmark</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">SLM-MUX<br>(2 SLMs)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Qwen 2.5 72B<br>(Single LLM)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Δ (Gain)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">MATH</td>
+                  <td style="padding: 0.75rem; text-align: center;">81.9 ± 0.2%</td>
+                  <td style="padding: 0.75rem; text-align: center;">82.3 ± 0.5%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #f39c12;">-0.4%</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">GPQA</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">49.9 ± 1.8%</td>
+                  <td style="padding: 0.75rem; text-align: center;">44.9 ± 0.5%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #27ae60; font-weight: 600;">+5.0%</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem;">GSM8K</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">93.7 ± 0.2%</td>
+                  <td style="padding: 0.75rem; text-align: center;">90.4 ± 0.3%</td>
+                  <td style="padding: 0.75rem; text-align: center; color: #27ae60; font-weight: 600;">+3.3%</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="has-text-left">
+              <strong>Table 1.</strong> Comparison of SLM-MUX (using two SLMs: Mistral Small 24B and Qwen2.5 7B) 
+              versus Qwen 2.5 72B across three reasoning benchmarks. SLM-MUX significantly outperforms the much 
+              larger model on GPQA and GSM8K, while matching its performance on MATH. This demonstrates that 
+              orchestrating multiple SLMs can be more effective than relying on a single large model.
+            </figcaption>
+          </figure>
+        </div>
+        
+        <div class="content has-text-left" style="margin-top: 3rem;">
+          <h3 class="title is-4">Takeaway 2: Discussion-Based Orchestration Harms SLM Performance</h3>
+          <p>
+            A natural question arises: if existing orchestration methods work well for frontier LLMs like GPT-4 and 
+            DeepSeek V3, shouldn't they also work for SLMs? To test this assumption, we conducted a systematic comparison 
+            of three prominent discussion-based approaches—LLM-Debate, Mixture-of-Agents, and Multi-Agent Verification. 
+            We ran these methods on two different model groups: (1) frontier LLMs (DeepSeek V3, Gemini 2.0 Flash, GPT-4o) 
+            and (2) SLMs (Llama 3.1 8B, Mistral 8×7B, Gemma 2 27B), using identical experimental settings and evaluation 
+            on MATH and GPQA benchmarks.
+          </p>
+          <p>
+            <strong>Results.</strong> The results reveal a striking divergence. While discussion-based methods successfully 
+            improve frontier LLM accuracy (up to 2% gains), the same methods consistently fail when applied to SLMs. 
+            Not only do they fail to surpass the best individual SLM in the group, but they can actually harm performance—
+            reducing accuracy by up to 5.5% in some cases. This counterintuitive finding challenges the assumption that 
+            orchestration strategies transfer seamlessly across model scales.
+          </p>
+          <p>
+            <strong>Analysis.</strong> Why do these methods fail for SLMs? Our investigation reveals that SLMs exhibit 
+            a problematic form of "groupthink" during discussions. Instead of critically evaluating and correcting each 
+            other's mistakes, smaller models tend to reinforce incorrect reasoning patterns, amplifying errors rather 
+            than mitigating them. This suggests that the collaborative deliberation mechanisms that work for large models—
+            which have stronger reasoning and self-correction abilities—break down when models lack sufficient capability 
+            to distinguish correct from incorrect reasoning. The appendix provides detailed empirical examples illustrating 
+            this phenomenon.
+          </p>
+          <figure>
+            <a href="project_files/Figures/Small-large-acc-light-blue_v2.pdf">
+              <img src="project_files/Figures/Small-large-acc-light-blue.png"
+                   alt="Comparison of discussion-based orchestration with SLMs vs frontier LLMs on MATH and GPQA"
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left">
+              Comparison of discussion-based orchestration using SLMs (left) and frontier LLMs (right) on MATH and GPQA.
+              Baseline “Single‑Model Max” denotes the best individual model. Orchestration is successful if it surpasses
+              the baseline.
+            </figcaption>
+          </figure>
+        </div>
+        
+        <div class="content has-text-left" style="margin-top: 3rem;">
+          <h3 class="title is-4">Takeaway 3: SLM-MUX Achieves SLM Orchestration Where Existing Methods Fail</h3>
+          <p>
+            Having demonstrated that discussion-based orchestration methods fail for SLMs (Takeaway 2), a natural 
+            question arises: can SLMs be orchestrated successfully at all? To answer this, we evaluate our proposed 
+            SLM-MUX against the same baselines that failed in Takeaway 2. We use the same experimental setup with 
+            three SLMs (Mistral 8×7B, LLaMA 3.1 8B, and Gemma 2 27B) and test on MATH, GPQA, and GSM8K benchmarks.
+          </p>
+          <p>
+            <strong>Results.</strong> Unlike existing orchestration methods that fail to outperform individual models 
+            when applied to SLMs, SLM-MUX consistently achieves substantial accuracy gains. Compared with other 
+            orchestration approaches, our method yields up to 13.4% improvement on MATH, up to 8.8% on GPQA, and up 
+            to 7.0% on GSM8K. These results demonstrate that SLM-MUX successfully orchestrates SLMs where existing 
+            methods fail, providing a clear architectural advantage over alternative orchestration approaches.
+          </p>
+          <p>
+            <strong>Analysis.</strong> The key to SLM-MUX's success lies in its confidence-based selection mechanism. 
+            Rather than forcing models to discuss and potentially amplify errors (as in discussion-based methods), 
+            SLM-MUX allows each model to independently generate multiple responses and estimates confidence by counting 
+            answer frequency. The system then selects outputs from the most confident model, effectively leveraging the 
+            complementary strengths of different SLMs. As shown in our output attribution analysis, SLM-MUX successfully 
+            draws upon diverse models to produce final answers, demonstrating that it effectively exploits the 
+            heterogeneity that exists across SLMs—something that discussion-based methods fail to achieve.
+          </p>
+          <figure>
+            <table style="width:100%; border-collapse: collapse; margin: 2rem 0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #333;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600;">Method</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">MATH<br>Acc (%)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">GPQA<br>Acc (%)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">GSM8K<br>Acc (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">Mixture-of-Agents</td>
+                  <td style="padding: 0.75rem; text-align: center;">51.4 ± 2.2</td>
+                  <td style="padding: 0.75rem; text-align: center;">33.3 ± 3.4</td>
+                  <td style="padding: 0.75rem; text-align: center;">81.6 ± 1.7</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">LLM-Debate</td>
+                  <td style="padding: 0.75rem; text-align: center;">51.6 ± 2.2</td>
+                  <td style="padding: 0.75rem; text-align: center;">36.8 ± 3.4</td>
+                  <td style="padding: 0.75rem; text-align: center;">80.8 ± 1.8</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">Multi-Agent Verification</td>
+                  <td style="padding: 0.75rem; text-align: center;">48.4 ± 2.2</td>
+                  <td style="padding: 0.75rem; text-align: center;">35.3 ± 3.4</td>
+                  <td style="padding: 0.75rem; text-align: center;">86.4 ± 1.5</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd; background-color: #f8f9fa;">
+                  <td style="padding: 0.75rem; font-weight: 600;">SLM-MUX (Ours)</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">61.8 ± 1.2</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">42.1 ± 0.3</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">87.8 ± 0.6</td>
+                </tr>
+                <tr style="border-top: 2px solid #333; border-bottom: 1px solid #ddd;">
+                  <td style="padding: 0.75rem;">Single-Best</td>
+                  <td style="padding: 0.75rem; text-align: center;">56.8 ± 2.2</td>
+                  <td style="padding: 0.75rem; text-align: center;">38.9 ± 3.5</td>
+                  <td style="padding: 0.75rem; text-align: center;">84.2 ± 1.6</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem;">Single-Best-SC</td>
+                  <td style="padding: 0.75rem; text-align: center;">58.0 ± 2.2</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600;">42.4 ± 3.5</td>
+                  <td style="padding: 0.75rem; text-align: center;">86.8 ± 1.5</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="has-text-left">
+              <strong>Table 2.</strong> Comparison of SLM-MUX against existing orchestration methods and single-model 
+              baselines. SLM-MUX (using three SLMs: Mistral 8×7B, LLaMA 3.1 8B, and Gemma 2 27B) consistently 
+              outperforms all discussion-based orchestration methods. "Single-Best" shows the accuracy of the 
+              best individual model, while "Single-Best-SC" applies self-consistency to the best model. SLM-MUX 
+              achieves up to 13.4% improvement over discussion-based methods on MATH, demonstrating successful 
+              orchestration where existing methods fail.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -102,98 +349,275 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Publications</h2>
-    
-    <div class="publication-item">
-        <div class="columns">
-            <div class="column is-10 is-offset-1">
-                <div class="content">
-                    <h4 class="title is-4"><a href="https://arxiv.org/abs/2403.05527">GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM</a></h4>
-                    <p><strong>Hao Kang*</strong>, Qingru Zhang*, Souvik Kundu, Geonhwa Jeong, Zaoxing Liu, Tushar Krishna, Tuo Zhao</p>
-                    <p><em>Arxiv</em></p>
-                    <p>We propose a novel cache compression algorithm on KV cache for large language model inference. It can achieve near-lossless compression ratio and 2x speedup and 2x peak memory saving on inference time.</p>
-                </div>
-            </div>
-        </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-left">
+          <h3 class="title is-4">Takeaway 4: Model Selection Search Boosts SLM-MUX Performance</h3>
+          <p>
+            A natural question arises: which models should be orchestrated together? Not all combinations are equally 
+            effective—if one model is weaker across all dimensions, it provides no benefit when paired with a stronger 
+            one. In contrast, combining models with complementary strengths (e.g., one excelling in algebra, another in 
+            geometry) allows the system to succeed where a single model would fail. To address this, we develop a model 
+            selection search strategy that systematically evaluates and identifies model subsets with complementary strengths.
+          </p>
+          <p>
+            We construct a validation set of 500 questions sampled from the training splits of MATH, GPQA, and GSM8K. 
+            Our candidate pool consists of five SLMs: Gemma 2 27B, Llama 3.1 8B, Mistral Small 24B, Mixtral 8×7B, and 
+            Qwen2.5 7B. The search procedure considers orchestrations with K=2 to 5 models and is guided by an objective 
+            function that balances union accuracy (percentage of questions solvable by at least one model) while 
+            penalizing contradictions (when models provide conflicting answers).
+          </p>
+          <p>
+            <strong>Results.</strong> Table 3 shows the top-performing two-model combinations identified by our search 
+            for each benchmark, along with their evaluation on the held-out test set. Across benchmarks, these optimized 
+            orchestrations yield consistent improvements over the strongest individual models: accuracy increases by 4.5% 
+            on MATH, 4.4% on GPQA, and 4.3% on GSM8K. This contrasts with Takeaway 3, where naive three-model combinations 
+            provide little to no benefit on GPQA, demonstrating that proper model selection is crucial for effective 
+            orchestration.
+          </p>
+          <p>
+            <strong>Analysis.</strong> Figure 3 illustrates the underlying trade-off in model selection. While union 
+            accuracy rises with additional models (grey line), the contradiction penalty also grows (grey shaded area). 
+            The overall objective score (blue line) captures this balance. On GPQA and GSM8K, performance peaks early 
+            and then declines or plateaus despite increasing union accuracy, because adding more models increases the 
+            frequency of contradictory predictions. When models disagree, SLM-MUX must select one output based on 
+            confidence scores—and incorrect selections become more likely as contradictions grow. This reveals that 
+            effective orchestration requires finding the optimal balance rather than simply maximizing the number of models.
+          </p>
+          
+          <figure style="margin: 2rem 0;">
+            <table style="width:100%; border-collapse: collapse; margin: 2rem 0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #333;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600;">Benchmark</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Group</th>
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600;">Model Selection</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Best Single<br>(Acc. %)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Composed<br>(Acc. %)</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600;">Δ<br>(Gain)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td rowspan="2" style="padding: 0.75rem; vertical-align: middle; font-weight: 600;">MATH</td>
+                  <td style="padding: 0.75rem; text-align: center;">1</td>
+                  <td style="padding: 0.75rem;">Mistral Small 24B<br>Qwen2.5 7B</td>
+                  <td style="padding: 0.75rem; text-align: center;">75.5 ± 1.5</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">80.0 ± 0.7</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">+4.5</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #333;">
+                  <td style="padding: 0.75rem; text-align: center;">2</td>
+                  <td style="padding: 0.75rem;">Qwen2.5 7B<br>Llama 3.1 8B</td>
+                  <td style="padding: 0.75rem; text-align: center;">75.5 ± 1.5</td>
+                  <td style="padding: 0.75rem; text-align: center;">77.7 ± 0.7</td>
+                  <td style="padding: 0.75rem; text-align: center;">+2.2</td>
+                </tr>
+                
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td rowspan="2" style="padding: 0.75rem; vertical-align: middle; font-weight: 600;">GPQA</td>
+                  <td style="padding: 0.75rem; text-align: center;">1</td>
+                  <td style="padding: 0.75rem;">Gemma 2 27B<br>Mistral Small 24B</td>
+                  <td style="padding: 0.75rem; text-align: center;">45.1 ± 2.8</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">49.5 ± 1.8</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">+4.4</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #333;">
+                  <td style="padding: 0.75rem; text-align: center;">2</td>
+                  <td style="padding: 0.75rem;">Llama 3.1 8B<br>Mistral Small 24B</td>
+                  <td style="padding: 0.75rem; text-align: center;">45.1 ± 2.8</td>
+                  <td style="padding: 0.75rem; text-align: center;">48.8 ± 0.8</td>
+                  <td style="padding: 0.75rem; text-align: center;">+3.6</td>
+                </tr>
+                
+                <tr style="border-bottom: 1px solid #ddd;">
+                  <td rowspan="2" style="padding: 0.75rem; vertical-align: middle; font-weight: 600;">GSM8K</td>
+                  <td style="padding: 0.75rem; text-align: center;">1</td>
+                  <td style="padding: 0.75rem;">Mistral Small 24B<br>Qwen2.5 7B</td>
+                  <td style="padding: 0.75rem; text-align: center;">88.5 ± 0.7</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">92.8 ± 0.6</td>
+                  <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #27ae60;">+4.3</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem; text-align: center;">2</td>
+                  <td style="padding: 0.75rem;">Llama 3.1 8B<br>Mixtral 8×7B</td>
+                  <td style="padding: 0.75rem; text-align: center;">80.8 ± 2.1</td>
+                  <td style="padding: 0.75rem; text-align: center;">85.2 ± 0.7</td>
+                  <td style="padding: 0.75rem; text-align: center;">+4.4</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="has-text-left">
+              <strong>Table 3.</strong> Model selection search results showing the top two model groups identified for 
+              each benchmark. For each group, we report the accuracy of the best-performing single model within the 
+              orchestration, the accuracy achieved by SLM-MUX, and the resulting performance gain. The search successfully 
+              identifies complementary model pairs that consistently improve over individual models across all benchmarks.
+            </figcaption>
+          </figure>
+
+          <figure style="margin: 2rem 0;">
+            <a href="project_files/Figures/search_summary_comparison.pdf">
+              <img src="project_files/Figures/search_summary_comparison.png" 
+                   alt="Search objectives as number of models increases" 
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left" style="margin-top: 1rem;">
+              <strong>Figure 3.</strong> Union accuracy and contradiction penalty both increase as more models are added. 
+              We plot the search objectives as the number of models (K) increases from 2 to 5 across three benchmarks. 
+              The green line denotes the union accuracy (percentage of questions solvable by at least one model), the 
+              grey shaded area indicates the contradiction penalty (frequency of conflicting predictions), and the blue 
+              line represents the overall search objective score. While union accuracy consistently grows, the rising 
+              contradiction penalty explains why simply adding more models does not always improve final accuracy.
+            </figcaption>
+          </figure>
         </div>
         
-    <div class="publication-item">
-        <div class="columns">
-            <div class="column is-10 is-offset-1">
-                <div class="content">
-                    <h4 class="title is-4">KV Cache Optimizations for Large Language Model Inference</h4>
-                    <p>In review <em>Mlsys2024</em></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="publication-item">
-        <div class="columns">
-            <div class="column is-10 is-offset-1">
-                <div class="content">
-                    <h4 class="title is-4"><a href="https://arxiv.org/pdf/2306.01244.pdf">Towards Sustainable Learning: Coresets for Data-efficient Deep Learning</a></h4>
-                    <p>Yu Yang, <strong>Hao Kang</strong>, Baharan Mirzasoleiman</p>
-                    <p><em>ICML 2023</em></p>
-                    <p>We design a dataset distiling algorithm based on submodular function and batch SGD that can distil a small dataset from a large dataset. The small dataset can be used to train a model with similar performance to the model trained on the large dataset.</p>
-                </div>
+        <div class="content has-text-left" style="margin-top: 3rem;">
+          <h3 class="title is-4">Takeaway 5: Test-Time Scaling Impacts SLM-MUX in Different Ways</h3>
+          <p>
+            Beyond the basic SLM-MUX architecture, we investigate two complementary strategies for scaling 
+            computational resources at test time: (1) <strong>Adding More Participating Model Types</strong>—increasing 
+            the number of distinct SLMs in the orchestration from 2 to 5 models, and (2) <strong>Drawing More Samples 
+            per Model</strong>—generating multiple independent responses from each model and using them to improve 
+            confidence estimation. These two dimensions offer different trade-offs between accuracy and computational cost.
+          </p>
+          
+          <h4 class="title is-5" style="margin-top: 2rem;">Adding More Participating Model Types</h4>
+          <p>
+            We evaluate how performance changes as we increase the number of models in the orchestration. For each 
+            ensemble size (K=2 to 5), we apply our model selection search to identify the optimal combination, then 
+            evaluate SLM-MUX on the validation set.
+          </p>
+          <p>
+            <strong>Results.</strong> The effect of adding more models varies substantially across benchmarks 
+            (Figure 4a). On GPQA, accuracy peaks at K=2 models and declines thereafter. On GSM8K, performance 
+            quickly saturates at two models with no further gains. In contrast, on MATH, accuracy continues to improve 
+            as additional models are included. Interestingly, despite these divergent trends in final accuracy, the 
+            union accuracy (the percentage of questions solved by at least one model) consistently increases with more 
+            models across all benchmarks.
+          </p>
+          <p>
+            <strong>Analysis.</strong> This divergence reveals a fundamental tension: while adding models expands the 
+            set of questions that <em>can</em> be answered (higher union accuracy), it also increases the frequency of 
+            contradictory predictions among models. When models disagree, SLM-MUX must select one output based on 
+            confidence scores—and incorrect selections become more likely as contradictions grow. This explains why 
+            GPQA and GSM8K show declining or plateauing performance despite growing union accuracy. The optimal number 
+            of models depends on the specific benchmark and the degree of complementarity among available SLMs.
+          </p>
+
+          <figure style="margin: 2rem 0;">
+            <a href="project_files/Figures/Adding_More_Participating_Models.pdf">
+              <img src="project_files/Figures/Adding_More_Participating_Models.png" 
+                   alt="Adding More Participating Models" 
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left" style="margin-top: 1rem;">
+              <strong>Figure 4a. Adding more participating model types (K=2 to 5).</strong> The blue line shows 
+              mean accuracy of SLM-MUX with optimal model selections. The grey line shows union accuracy (percentage 
+              of questions solvable by at least one model). MATH continues improving with more models, while GPQA 
+              and GSM8K peak early or decline, despite consistently increasing union accuracy across all benchmarks.
+            </figcaption>
+          </figure>
+          
+          <h4 class="title is-5" style="margin-top: 2rem;">Drawing More Samples per Model</h4>
+          <p>
+            We examine the second scaling dimension by varying the number of samples drawn from each model (from 2 to 9 
+            samples) while keeping the model set fixed. We compare SLM-MUX against Agent Forest, a competitive baseline 
+            method, using identical model configurations to ensure fair comparison.
+          </p>
+          <p>
+            <strong>Results.</strong> Drawing more samples per model yields consistent improvements across all three 
+            benchmarks (Figure 4b). Unlike the model-count scaling dimension, this strategy shows no signs of 
+            diminishing returns within the tested range. Moreover, SLM-MUX systematically outperforms Agent Forest 
+            across all sample budgets, with the largest margin observed on GPQA (+5.9% at 2 samples), where individual 
+            model accuracy is lowest. At higher sample counts, SLM-MUX maintains its advantage (+1.2% on GPQA, +2.2% 
+            on GSM8K, +0.3% on MATH when using the best sample count for each method).
+          </p>
+          <p>
+            <strong>Analysis.</strong> Increasing samples per model provides more reliable confidence estimates, allowing 
+            SLM-MUX to make better output selections. This explains the consistent gains across benchmarks. The larger 
+            improvements on GPQA suggest that sample scaling is particularly valuable when base model performance is 
+            weaker, as additional samples help distinguish between truly confident correct answers and overconfident 
+            incorrect ones. This scaling dimension offers a more predictable path to accuracy improvements compared to 
+            adding more model types.
+          </p>
+
+          <figure style="margin: 2rem 0;">
+            <a href="project_files/Figures/scaling_curves.pdf">
+              <img src="project_files/Figures/scaling_curves.png" 
+                   alt="Drawing More Samples per Model" 
+                   style="width:100%;height:auto;">
+            </a>
+            <figcaption class="has-text-left" style="margin-top: 1rem;">
+              <strong>Figure 4b. Drawing more samples per model.</strong> We report mean accuracy as the number of 
+              samples per model increases from 2 to 9. SLM-MUX (colored lines for Group 1 and Group 2) systematically 
+              outperforms Agent Forest (grey line) across all sample budgets on MATH, GPQA, and GSM8K. The largest 
+              gains appear on GPQA where base model accuracy is lowest, demonstrating that sample scaling is 
+              particularly valuable for harder tasks.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Research Project and Tools</h2>
-        
-        <div class="project-item">
-            <div class="columns">
-                <div class="column is-10 is-offset-1">
-                    <div class="content">
-                        <h4 class="title is-4"><a href="https://github.com/HaoKang-Timmy/torchanalyse.git">torchanalyse.</a></h4>
-                        <p>A model profiling tool based on TVM and Maestro(Thanks for the help Abhi!). It can profile the model and give the flops, memory usage, and latency of each layer. It can also give the flops of each operator in the model. <a href="data/Epipe.key">More Information</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-item">
-            <div class="columns">
-                <div class="column is-10 is-offset-1">
-                    <div class="content">
-                        <h4 class="title is-4"><a href="https://github.com/HaoKang-Timmy/Epipe">Epipe: Efficient Pipeline Parallelism with Compression Algorithms.</a></h4>
-                        <p>A research project based on Gpipe and low-rank approximation which decreases bandwidth of activation transfer during cloud-based training process. <a href="data/Epipe.key">More Information</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-item">
-            <div class="columns">
-                <div class="column is-10 is-offset-1">
-                    <div class="content">
-                        <h4 class="title is-4"><a href="https://github.com/Lyken17/pytorch-OpCounter">THOP: PyTorch-OpCounter.</a></h4>
-                        <p>A python third party library that counts flops of models(pytorch, jit, onnx). Already has 4k stars! I wrote the counter of onnx form. <a href="https://github.com/Lyken17/pytorch-OpCounter/pull/143">More Information</a></p>
-                    </div>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Our Related Projects</h2>
+        <div class="publication-links">
+                <span class="link-block">
+                    <a href="https://composable-models-staging.github.io/llm_debate/" class="external-link button is-medium is-rounded is-link">
+                        <span>LLM-Debate</span>
+                    </a>
+                </span>
+          <span class="link-block">
+                    <a href="https://ardalabs.ai/MultiAgentVerification/" class="external-link button is-medium is-rounded is-link">
+                        <span>Multi Agent Verification</span>
+                    </a>
+                </span>
+          <span class="link-block">
+                    <a href="https://yilundu.github.io/" class="external-link button is-medium is-rounded is-link">
+                        <span>More Compositional AI Research</span>
+                    </a>
+                </span>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
           <p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
           <p>
-        Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-      </p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
