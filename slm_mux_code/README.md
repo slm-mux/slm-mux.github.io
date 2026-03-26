@@ -28,8 +28,8 @@ slm_mux_code/
 
 ```bash
 # Clone the repository
-git clone https://github.com/billwang485/SLM-MUX-ICLR.git
-cd SLM-MUX-ICLR/slm_mux_code
+git clone https://github.com/billwang485/SLM-MUX.git
+cd SLM-MUX/slm_mux_code
 
 # Install dependencies
 pip install -r requirements.txt
@@ -221,7 +221,7 @@ If you use this code in your research, please cite:
 
 - **Project Page**: https://slm-mux.github.io
 - **Paper**: [ICLR 2026]
-- **GitHub**: https://github.com/billwang485/SLM-MUX-ICLR
+- **GitHub**: https://github.com/billwang485/SLM-MUX
 
 ## 📧 Contact
 
